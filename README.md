@@ -18,7 +18,7 @@ This project is a **Credit Card Fraud Detection System** built using **Flask**. 
 
 ## **Project Overview**
 
-The model in this project was trained using anonymized **credit card transaction data** to detect fraudulent activities effectively. By applying a custom threshold, the model emphasizes **precision**, aiming to minimize false positives and enhance fraud detection accuracy.
+The model in this project was trained using anonymized **credit card transaction data** to detect fraudulent activities effectively.Applying a custom threshold, the model emphasizes **precision**, aiming to minimize false positives and enhance fraud detection accuracy.
 
 ---
 
