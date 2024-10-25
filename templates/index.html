@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 800px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-row {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Fraud Detection</h1>
+        <form action="/predict-manual" method="post">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="transaction_type_code">Transaction Type Code</label>
+                    <input type="text" class="form-control" name="transaction_type_code" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="merchant_code">Merchant Code</label>
+                    <input type="text" class="form-control" name="merchant_code" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="transaction_time">Transaction Time (Hour of Day)</label>
+                    <input type="text" class="form-control" name="transaction_time" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="day_of_week">Day of Week (1-7)</label>
+                    <input type="text" class="form-control" name="day_of_week" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="transaction_location_code">Transaction Location Code</label>
+                    <input type="text" class="form-control" name="transaction_location_code" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="payment_method_code">Payment Method Code</label>
+                    <input type="text" class="form-control" name="payment_method_code" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="cardholder_age_group">Cardholder Age Group (1-5)</label>
+                    <input type="text" class="form-control" name="cardholder_age_group" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="merchant_category_code">Merchant Category Code</label>
+                    <input type="text" class="form-control" name="merchant_category_code" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="transaction_amount">Transaction Amount</label>
+                    <input type="text" class="form-control" name="transaction_amount" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="account_balance_before">Account Balance Before Transaction</label>
+                    <input type="text" class="form-control" name="account_balance_before" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="account_balance_after">Account Balance After Transaction</label>
+                    <input type="text" class="form-control" name="account_balance_after" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="num_transactions_past_week">Number of Transactions in Past Week</label>
+                    <input type="text" class="form-control" name="num_transactions_past_week" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="num_transactions_past_month">Number of Transactions in Past Month</label>
+                    <input type="text" class="form-control" name="num_transactions_past_month" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="avg_transaction_amount_week">Average Transaction Amount (Last Week)</label>
+                    <input type="text" class="form-control" name="avg_transaction_amount_week" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="avg_transaction_amount_month">Average Transaction Amount (Last Month)</label>
+                    <input type="text" class="form-control" name="avg_transaction_amount_month" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="transaction_currency_code">Transaction Currency Code</label>
+                    <input type="text" class="form-control" name="transaction_currency_code" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="currency_exchange_rate">Currency Exchange Rate Applied</label>
+                    <input type="text" class="form-control" name="currency_exchange_rate" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="is_international_transaction">Is International Transaction (0/1)</label>
+                    <input type="text" class="form-control" name="is_international_transaction" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="is_contactless">Is Contactless Payment (0/1)</label>
+                    <input type="text" class="form-control" name="is_contactless" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="num_declines_today">Number of Previous Declines Today</label>
+                    <input type="text" class="form-control" name="num_declines_today" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="card_type">Card Type (Debit=0, Credit=1)</label>
+                    <input type="text" class="form-control" name="card_type" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="card_issuer_code">Card Issuer Code</label>
+                    <input type="text" class="form-control" name="card_issuer_code" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="country_issuer_code">Country of Issuer Code</label>
+                    <input type="text" class="form-control" name="country_issuer_code" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="failed_attempts_today">Number of Failed Attempts Today</label>
+                    <input type="text" class="form-control" name="failed_attempts_today" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="is_cardholder_verified">Is Cardholder Verified (0/1)</label>
+                    <input type="text" class="form-control" name="is_cardholder_verified" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="approval_time">Time to Approval (Seconds)</label>
+                    <input type="text" class="form-control" name="approval_time" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <label for="is_online_transaction">Is Transaction Online (0/1)</label>
+                    <input type="text" class="form-control" name="is_online_transaction" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="fraud_history">Cardholder’s Fraud History (0/1)</label>
+                    <input type="text" class="form-control" name="fraud_history" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict Single Transaction</button>
+        </form>
+        <hr>
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <h3>Upload CSV File for Bulk Prediction:</h3>
+            <div class="form-group">
+                <label for="file">CSV File:</label>
+                <input type="file" class="form-control" name="file" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict and Download</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
