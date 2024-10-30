@@ -34,3 +34,7 @@ The dataset used for training contains over **550,000 records** of anonymized Eu
 
 ---
 
+## **App link**
+
+
+
