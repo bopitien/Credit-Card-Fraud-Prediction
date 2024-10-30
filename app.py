@@ -72,12 +72,13 @@ def predict():
         roc_auc = roc_auc_score(actual_labels, predictions)
 
         report = {
-            'Accuracy': f"{accuracy:.2f}",
-            'Precision': f"{precision:.2f}",
-            'Recall': f"{recall:.2f}",
-            'F1 Score': f"{f1:.2f}",
-            'ROC AUC Score': f"{roc_auc:.2f}"
+            'Accuracy': f"{accuracy * 100:.2f}%",
+            'Precision': f"{precision * 100:.2f}%",
+            'Recall': f"{recall * 100:.2f}%",
+            'F1 Score': f"{f1 * 100:.2f}%",
+            'ROC AUC Score': f"{roc_auc * 100:.2f}%"
         }
+
 
         # Return the report.html template with the report data
         return render_template('report.html', report=report, download_link='/download')
