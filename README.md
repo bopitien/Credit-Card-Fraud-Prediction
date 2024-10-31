@@ -35,6 +35,6 @@ The dataset used for training contains over **550,000 records** of anonymized Eu
 ---
 
 ## **App link**
-
+https://credit-fraud-detecting-app-5df6dbd8d3f3.herokuapp.com/
 
 
